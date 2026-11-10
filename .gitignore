@@ -1,0 +1,68 @@
+# ---- secrets: never commit (see docs/README.md, "Secrets")
+net_key.h
+atak_key
+atak_key.*
+sec_mode
+dl_ctr
+ssh_host_*
+*.pem
+*.key
+.env
+
+# ---- Vivado
+fpga/pl/build/
+.Xil/
+*.jou
+dfx_runtime.txt
+*.log
+*.str
+*.backup.*
+vivado_pid*.zip
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.gen/
+*.ip_user_files/
+
+# ---- xsim (fpga/pl/sim)
+fpga/pl/sim/xsim.dir/
+fpga/pl/sim/logs/
+fpga/pl/sim/*.pb
+fpga/pl/sim/*.wdb
+fpga/pl/sim/*.mem
+
+# ---- build outputs / boot images (published as GitHub Releases, not in git)
+*.bit
+*.xsa
+BOOT.BIN
+image.ub
+boot.scr
+fpga/ps/gui/atak_gui
+fpga/ps/tools/fbload
+map/
+map_out/
+
+# ---- ESP-IDF
+esp32-bridge/build/
+esp32-bridge/sdkconfig
+esp32-bridge/sdkconfig.old
+esp32-bridge/managed_components/
+
+# ---- Flutter / iOS
+mobile-app/.dart_tool/
+mobile-app/build/
+mobile-app/.flutter-plugins*
+mobile-app/ios/Pods/
+mobile-app/ios/Flutter/ephemeral/
+mobile-app/ios/Flutter/Generated.xcconfig
+mobile-app/ios/Flutter/flutter_export_environment.sh
+*.ipa
+
+# ---- editors / OS / Python
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
