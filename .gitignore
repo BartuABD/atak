@@ -66,3 +66,7 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# ---- test-only dummy key (00 01 .. 0F), required by firmware host tests
+!firmware/stm32wl/tests/stubs/net_key.h
+firmware/stm32wl/tests/build/
