@@ -36,7 +36,7 @@ flowchart LR
 | Component | Version |
 |---|---|
 | PL server (`atk_axi`) | v12, ID `0x41544B0C` |
-| Node / gateway firmware | V1.17.1 |
+| Node / gateway firmware | V1.17.3 |
 
 A PL version and a firmware version are compatible when they implement the same revision of
 [`docs/protocol.md`](docs/protocol.md).
