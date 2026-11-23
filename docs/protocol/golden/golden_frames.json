@@ -1,0 +1,256 @@
+{
+  "description": "Golden frames shared by the firmware host tests and the PL testbenches. Test key only; all multi-byte fields little-endian.",
+  "key_hex": "00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f",
+  "cipher": "AES-128-CCM, tag 4, nonce = dev_id(4) | counter(4) | dir(1) | 00 00 00 00",
+  "dir": {
+    "0": "sent by a node",
+    "1": "sent by the Zybo (dev_id FFFFFFFE)"
+  },
+  "frames": [
+    {
+      "name": "env_0x51_position",
+      "description": "Reference vector of the 0x51 envelope: dev_id 0x12345678, counter 1, direction 0, position of 0x8101. Gateway frame RSSI -60, SNR +8.",
+      "fw_version": "V1.15",
+      "direction": "node_to_zybo",
+      "envelope": "0x51",
+      "dev_id": "0x12345678",
+      "counter": 1,
+      "air_hex": "51 78 56 34 12 01 00 00 00 5b 0d 40 6a ae 8d 1e ff cd e1 0f 18 b6 2d 73 27",
+      "air_len": 25,
+      "uart_hex": "aa 55 1b 51 78 56 34 12 01 00 00 00 5b 0d 40 6a ae 8d 1e ff cd e1 0f 18 b6 2d 73 27 c4 08 90",
+      "plaintext_hex": "01 81 07 d0 5a 71 18 c0 c0 45 11 01",
+      "decoded": {
+        "type": "position",
+        "addr": "0x8101",
+        "seq": 7,
+        "lat_e7": 410082000,
+        "lon_e7": 289784000,
+        "flags": "0x01",
+        "flag_fix": 1,
+        "flag_relay_req": 0,
+        "flag_via_relay": 0,
+        "gw_quality": 0,
+        "flag_direct": 0
+      }
+    },
+    {
+      "name": "pos_0x52_relay_dev_chosen",
+      "description": "Far node A3C8BA55, counter 5, position with relay request, relay_dev = chosen neighbour A0000001.",
+      "fw_version": "V1.17",
+      "direction": "node_to_zybo",
+      "envelope": "0x52",
+      "dev_id": "0xA3C8BA55",
+      "counter": 5,
+      "relay_dev": "0xA0000001",
+      "air_hex": "52 55 ba c8 a3 05 00 00 00 01 00 00 a0 33 2b f5 23 54 fd b4 65 f3 74 f4 b6 64 d4 02 46",
+      "air_len": 29,
+      "uart_hex": "aa 55 1f 52 55 ba c8 a3 05 00 00 00 01 00 00 a0 33 2b f5 23 54 fd b4 65 f3 74 f4 b6 64 d4 02 46 a6 fb 48",
+      "plaintext_hex": "53 0f 04 9c a6 6d 18 00 bc 32 11 02",
+      "decoded": {
+        "type": "position",
+        "addr": "0x0F53",
+        "seq": 4,
+        "lat_e7": 409839260,
+        "lon_e7": 288537600,
+        "flags": "0x02",
+        "flag_fix": 0,
+        "flag_relay_req": 1,
+        "flag_via_relay": 0,
+        "gw_quality": 0,
+        "flag_direct": 0
+      }
+    },
+    {
+      "name": "pos_0x52_relay_dev_any",
+      "description": "Far node A3C8BA55, counter 0x13, relay_dev = FFFFFFFF (no usable neighbour).",
+      "fw_version": "V1.17",
+      "direction": "node_to_zybo",
+      "envelope": "0x52",
+      "dev_id": "0xA3C8BA55",
+      "counter": 19,
+      "relay_dev": "0xFFFFFFFF",
+      "air_hex": "52 55 ba c8 a3 13 00 00 00 ff ff ff ff ff 72 42 43 bd a3 9c df 73 04 3a 2b 68 b7 0d d8",
+      "air_len": 29,
+      "uart_hex": "aa 55 1f 52 55 ba c8 a3 13 00 00 00 ff ff ff ff ff 72 42 43 bd a3 9c df 73 04 3a 2b 68 b7 0d d8 a6 fb f3",
+      "plaintext_hex": "53 0f 11 2e ab 6d 18 00 bc 32 11 02",
+      "decoded": {
+        "type": "position",
+        "addr": "0x0F53",
+        "seq": 17,
+        "lat_e7": 409840430,
+        "lon_e7": 288537600,
+        "flags": "0x02",
+        "flag_fix": 0,
+        "flag_relay_req": 1,
+        "flag_via_relay": 0,
+        "gw_quality": 0,
+        "flag_direct": 0
+      }
+    },
+    {
+      "name": "pos_0x52_relay_dev_any_node2",
+      "description": "Far node 11223344, counter 0x34, relay_dev = FFFFFFFF, flags 0x03 (fix + relay request).",
+      "fw_version": "V1.17",
+      "direction": "node_to_zybo",
+      "envelope": "0x52",
+      "dev_id": "0x11223344",
+      "counter": 52,
+      "relay_dev": "0xFFFFFFFF",
+      "air_hex": "52 44 33 22 11 34 00 00 00 ff ff ff ff 9a 00 84 0b b0 ae a6 e0 a8 ac 0e f7 79 00 b7 c5",
+      "air_len": 29,
+      "uart_hex": "aa 55 1f 52 44 33 22 11 34 00 00 00 ff ff ff ff 9a 00 84 0b b0 ae a6 e0 a8 ac 0e f7 79 00 b7 c5 a6 fb 1e",
+      "plaintext_hex": "03 82 06 11 11 11 11 11 11 11 11 03",
+      "decoded": {
+        "type": "position",
+        "addr": "0x8203",
+        "seq": 6,
+        "lat_e7": 286331153,
+        "lon_e7": 286331153,
+        "flags": "0x03",
+        "flag_fix": 1,
+        "flag_relay_req": 1,
+        "flag_via_relay": 0,
+        "gw_quality": 0,
+        "flag_direct": 0
+      }
+    },
+    {
+      "name": "nested_e1_with_0x52",
+      "description": "Relayer D74C4050 (addr 0x1764), counter 5, outer 0x51 carrying E1 [relayer addr, RSSI -85, SNR -3] + the far node's 0x52 packet unchanged.",
+      "fw_version": "V1.17",
+      "direction": "node_to_zybo",
+      "envelope": "0x51",
+      "dev_id": "0xD74C4050",
+      "counter": 5,
+      "air_hex": "51 50 40 4c d7 05 00 00 00 25 97 0e bc 5b 84 c9 f6 56 fb 13 2c e4 f5 ff cd f1 bf d6 f8 03 ad 6b 3f f9 66 af dc 42 ba 03 e3 ef 8f f7 73 ea b2",
+      "air_len": 47,
+      "uart_hex": "aa 55 31 51 50 40 4c d7 05 00 00 00 25 97 0e bc 5b 84 c9 f6 56 fb 13 2c e4 f5 ff cd f1 bf d6 f8 03 ad 6b 3f f9 66 af dc 42 ba 03 e3 ef 8f f7 73 ea b2 a6 fb 00",
+      "plaintext_hex": "e1 64 17 ab fd 52 44 33 22 11 32 00 00 00 50 40 4c d7 5a 40 55 a3 4a 62 a9 e9 91 07 eb a1 0a 2e 85 c4",
+      "decoded": {
+        "type": "E1",
+        "relayer_addr": "0x1764",
+        "relayer_rssi": -85,
+        "relayer_snr": -3
+      },
+      "inner": {
+        "air_hex": "52 44 33 22 11 32 00 00 00 50 40 4c d7 5a 40 55 a3 4a 62 a9 e9 91 07 eb a1 0a 2e 85 c4",
+        "dev_id": "0x11223344",
+        "counter": 50,
+        "relay_dev": "0xD74C4050",
+        "plaintext_hex": "03 82 05 11 11 11 11 11 11 11 11 03",
+        "decoded": {
+          "type": "position",
+          "addr": "0x8203",
+          "seq": 5,
+          "lat_e7": 286331153,
+          "lon_e7": 286331153,
+          "flags": "0x03",
+          "flag_fix": 1,
+          "flag_relay_req": 1,
+          "flag_via_relay": 0,
+          "gw_quality": 0,
+          "flag_direct": 0
+        }
+      }
+    },
+    {
+      "name": "nested_e2_with_0x52",
+      "description": "Relayer D74C4050, counter 6, outer 0x51 carrying E2 [relayer addr, RSSI -85, SNR -3] + the far node's 0x52 C5 ACK unchanged.",
+      "fw_version": "V1.17",
+      "direction": "node_to_zybo",
+      "envelope": "0x51",
+      "dev_id": "0xD74C4050",
+      "counter": 6,
+      "air_hex": "51 50 40 4c d7 06 00 00 00 64 a3 9f 6f 00 40 cc 55 33 87 4d 36 91 69 c0 4b 0f ec 71 19 7d 69 00 78 34 e5 49 16 f0 b9 e1 00 44 ad 28 57 4c 57 5c 7b 9f",
+      "air_len": 50,
+      "uart_hex": "aa 55 34 51 50 40 4c d7 06 00 00 00 64 a3 9f 6f 00 40 cc 55 33 87 4d 36 91 69 c0 4b 0f ec 71 19 7d 69 00 78 34 e5 49 16 f0 b9 e1 00 44 ad 28 57 4c 57 5c 7b 9f a6 fb 37",
+      "plaintext_hex": "e2 64 17 ab fd 52 44 33 22 11 33 00 00 00 50 40 4c d7 67 bd b9 65 09 b0 b5 8a c5 42 23 1e ab 9c e0 36 97 26 77",
+      "decoded": {
+        "type": "E2",
+        "relayer_addr": "0x1764",
+        "relayer_rssi": -85,
+        "relayer_snr": -3
+      },
+      "inner": {
+        "air_hex": "52 44 33 22 11 33 00 00 00 50 40 4c d7 67 bd b9 65 09 b0 b5 8a c5 42 23 1e ab 9c e0 36 97 26 77",
+        "dev_id": "0x11223344",
+        "counter": 51,
+        "relay_dev": "0xD74C4050",
+        "plaintext_hex": "c5 03 82 fe ff 03 01 fe ff 40 00 00 00 00 00",
+        "decoded": {
+          "type": "C5",
+          "src": "0x8203",
+          "dst": "0xFFFE",
+          "ack_seq": 3,
+          "kind": 1,
+          "kind_name": "DELIVERED",
+          "acked_src": "0xFFFE",
+          "acked_msg_id": 64
+        }
+      }
+    },
+    {
+      "name": "zybo_a2_join_answer",
+      "description": "Zybo downlink: A2 JOIN answer, counter 500, tx_repeat 3 (UART frame from the Zybo to the gateway).",
+      "fw_version": "V1.16.0",
+      "direction": "zybo_to_node",
+      "envelope": "0x51",
+      "dev_id": "0xFFFFFFFE",
+      "counter": 500,
+      "air_hex": "51 fe ff ff ff f4 01 00 00 cc b0 b2 bf 87 5e 74 57 5b f0 13 93 1d 9b f6 39 86 9b e2",
+      "air_len": 28,
+      "uart_hex": "aa 55 1d 03 51 fe ff ff ff f4 01 00 00 cc b0 b2 bf 87 5e 74 57 5b f0 13 93 1d 9b f6 39 86 9b e2 68",
+      "plaintext_hex": "a2 fe ff ff ff 30 a3 60 17 ad 02 81 01 02 00",
+      "decoded": {
+        "type": "A2",
+        "tx_repeat": 3,
+        "plaintext_len": 15
+      }
+    },
+    {
+      "name": "zybo_table_d1",
+      "description": "Zybo downlink: 0xD1 table with 2 records, counter 100, tx_repeat 1.",
+      "fw_version": "V1.16.0",
+      "direction": "zybo_to_node",
+      "envelope": "0x51",
+      "dev_id": "0xFFFFFFFE",
+      "counter": 100,
+      "air_hex": "51 fe ff ff ff 64 00 00 00 88 45 8d a1 94 93 64 33 1a f8 fc f2 fe a4 20 d8 ce c9 3b ac c7 92 4a 95 de e8 fb 5b e9 66",
+      "air_len": 39,
+      "uart_hex": "aa 55 28 01 51 fe ff ff ff 64 00 00 00 88 45 8d a1 94 93 64 33 1a f8 fc f2 fe a4 20 d8 ce c9 3b ac c7 92 4a 95 de e8 fb 5b e9 66 0f",
+      "plaintext_hex": "d1 02 64 17 03 11 11 11 11 11 11 11 11 01 02 83 09 11 11 11 11 11 11 11 11 01",
+      "decoded": {
+        "type": "D1",
+        "tx_repeat": 1,
+        "records": [
+          {
+            "type": "position",
+            "addr": "0x1764",
+            "seq": 3,
+            "lat_e7": 286331153,
+            "lon_e7": 286331153,
+            "flags": "0x01",
+            "flag_fix": 1,
+            "flag_relay_req": 0,
+            "flag_via_relay": 0,
+            "gw_quality": 0,
+            "flag_direct": 0
+          },
+          {
+            "type": "position",
+            "addr": "0x8302",
+            "seq": 9,
+            "lat_e7": 286331153,
+            "lon_e7": 286331153,
+            "flags": "0x01",
+            "flag_fix": 1,
+            "flag_relay_req": 0,
+            "flag_via_relay": 0,
+            "gw_quality": 0,
+            "flag_direct": 0
+          }
+        ]
+      }
+    }
+  ]
+}

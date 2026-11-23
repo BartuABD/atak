@@ -31,6 +31,11 @@ run secure_join       test_secure.c       $S -DSECURE_ONLY=0 -DROLE=2 -DGATEWAY_
 run relay_sel_relayer test_relay_select.c $S -DSECURE_ONLY=1 -DROLE=0 -DGATEWAY_MODE=0 -DJOIN_ENABLED=0 -DTEST_FAR_NODE=0 -DUIDW0=0x1764
 run relay_sel_far_node test_relay_select.c $S -DSECURE_ONLY=1 -DROLE=1 -DGATEWAY_MODE=0 -DJOIN_ENABLED=0 -DTEST_FAR_NODE=0 -DUIDW0=0x0F53
 run secure_gw_only    test_secure_gw_only.c $S -DSECURE_ONLY=1 -DGATEWAY_MODE=1 -DGATEWAY_LOCAL_TABLE=0 -DTEST_GW_IGNORE_DIRECT=0 -DUIDW0=0x1764
+# Golden frames (docs/protocol/golden); skipped if the file or python3 is missing
+GJ=../../../docs/protocol/golden/golden_frames.json
+if [[ -f "$GJ" ]] && command -v python3 >/dev/null; then
+  python3 gen_golden_h.py "$GJ" "$OUT/golden_gen.h" && run golden test_golden.c -I"$OUT"
+else echo "golden                       ATLANDI (golden_frames.json ya da python3 yok)"; fi
 echo
 if [[ $fail == 0 ]]; then echo "TUM TESTLER GECTI"; else echo "BASARISIZ TEST VAR"; fi
 exit $fail
